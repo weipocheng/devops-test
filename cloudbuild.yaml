@@ -14,14 +14,7 @@ steps:
   # - name: 'gcr.io/cloud-builders/gsutil'
   #   args: ['-m', 'rsync', '-r', '-c', '-d', 'dist', 'gs://your-bucket-name'] # 替換為您的 bucket 名稱
 
-# 可選: 設定觸發條件 (例如，當有新的程式碼推送到特定分支時觸發建構)
-# triggers:
-#   - id: 'my-vue3-vite5-build-trigger'
-#     github:
-#       owner: 'your-github-username'
-#       name: 'your-repo-name'
-#       push:
-#         branch: 'main' # 或其他您想監控的分支
-
 options:
   logging: CLOUD_LOGGING_ONLY
+
+# test
