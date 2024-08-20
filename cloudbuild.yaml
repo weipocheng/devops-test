@@ -10,12 +10,13 @@ steps:
     entrypoint: 'npm'
     args: ['run', 'build']
 
-  # 在當前目錄透過zip壓縮dist檔案成dist.zip
-  - name: 'ubuntu'
+  # 安裝zip套件，並在當前目錄透過zip壓縮dist檔案成dist.zip
+  - name: 'ubuntu:latest'
     entrypoint: 'bash'
     args:
     - '-c'
     - |
+        apt update && apt install -y zip
         zip -r dist.zip dist/*
   
   # 4. 將建構好的檔案上傳到 Artifact Registry
