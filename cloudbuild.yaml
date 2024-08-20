@@ -22,3 +22,6 @@ steps:
 #       name: 'your-repo-name'
 #       push:
 #         branch: 'main' # 或其他您想監控的分支
+
+options:
+  logging: CLOUD_LOGGING_ONLY
