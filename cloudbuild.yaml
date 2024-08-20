@@ -16,7 +16,7 @@ steps:
     args:
     - '-c'
     - |
-        gcloud artifacts generic upload --location=asia-east1 --repository=devops-test --source=dist --destination-path=my-vue-app/v1.0.0 # 上傳 dist 目錄
+        gcloud artifacts generic upload --location=asia-east1 --repository=devops-test --source=dist --package=my-vue-app --version=1.0.0
 
 options:
   logging: CLOUD_LOGGING_ONLY
