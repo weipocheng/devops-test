@@ -10,11 +10,13 @@ steps:
     entrypoint: 'npm'
     args: ['run', 'build']
 
-  # 3. 將建構好的檔案上傳到 Cloud Storage
-  # - name: 'gcr.io/cloud-builders/gsutil'
-  #   args: ['-m', 'rsync', '-r', '-c', '-d', 'dist', 'gs://your-bucket-name'] # 替換為您的 bucket 名稱
+  # 3. 將建構好的檔案上傳到 Artifact Registry
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk' # 使用 gcloud 指令
+    entrypoint: 'bash'
+    args:
+    - '-c'
+    - |
+        gcloud artifacts generic upload --location=asia-east1 --repository=devops-test --source=dist --destination-path=my-vue-app/v1.0.0 # 上傳 dist 目錄
 
 options:
   logging: CLOUD_LOGGING_ONLY
-
-# test
