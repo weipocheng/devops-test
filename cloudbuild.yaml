@@ -10,14 +10,13 @@ steps:
     entrypoint: 'npm'
     args: ['run', 'build']
 
-  # 安裝zip套件，並在當前目錄透過zip壓縮dist檔案成dist.zip
+  # 壓縮建構好的檔案
   - name: 'ubuntu:latest'
     entrypoint: 'bash'
     args:
     - '-c'
     - |
-        apt update && apt install -y zip
-        zip -r dist.zip dist/*
+        tar -czvf dist.tar.gz dist
   
   # 4. 將建構好的檔案上傳到 Artifact Registry
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk' # 使用 gcloud 指令
@@ -25,7 +24,7 @@ steps:
     args:
     - '-c'
     - |
-        gcloud artifacts generic upload --location=asia-east1 --repository=devops-test --source=dist.zip --package=my-vue-app --version=1.0.0
+        gcloud artifacts generic upload --location=asia-east1 --repository=devops-test --source=dist.tar.gz --package=my-vue-app --version=1.0.0
 
 options:
   logging: CLOUD_LOGGING_ONLY
